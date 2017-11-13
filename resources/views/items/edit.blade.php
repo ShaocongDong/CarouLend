@@ -16,7 +16,7 @@
                     </script>
 
                     <div class="panel-body">
-                        <form class="form-horizontal" method="POST" action="{{ route('newItemSubmit') }}">
+                        <form class="form-horizontal" method="POST" action="{{ route('items.editSubmit', $itemId) }}">
                             {{ csrf_field() }}
 
                             <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">

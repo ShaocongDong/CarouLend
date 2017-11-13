@@ -27,7 +27,8 @@ Route::get('/items/form', 'ItemController@create')->name('newItemView');
 Route::post('/items/form', 'ItemController@store')->name('newItemSubmit');
 
 Route::get('/items/{id}/edit', 'ItemController@editShow')->name('items.getEdit');
-Route::post('/items/{id}/edit', array('uses' => 'ItemController@editUpdate', 'as'=>'items.editSubmit'));
+//Route::post('/items/{id}/edit', array('uses' => 'ItemController@editUpdate', 'as'=>'items.editSubmit'));
+Route::post('/items/{id}/edit', 'ItemController@editUpdate')->name('items.editSubmit');
 
 Route::get('items/{id}/delete', 'ItemController@delete')->name('items.delete');
 

@@ -80,25 +80,25 @@ class ItemController extends Controller
         $itemName = $row['name'];
         $itemDescription = $row['description'];
 
-        $this->delete($itemId);
+        //$this->delete($itemId);
 
         return view('items.edit', compact('itemId', 'itemName','itemDescription'));
     }
 
-    public function editUpdate ()
+    public function editUpdate ($itemId)
     {
         $input = Request::all();
         $user = Auth::user();
         $userid = $user['id'];
         $itemName = $input['ItemName'];
-        $itemDescription = $input['ItemDescription'];
+        //$itemId = $input['itemId'];
+        $itemDescription = $input['Description'];
         $db = new mysqli('localhost', 'root', 'admin', 'blog');
         if($db->connect_errno > 0){
             die('Unable to connect to database [' . $db->connect_error . ']');
         }
-        $sql = "UPDATE items SET items.description = ".$itemDescription." where items.name = ".$itemName.";";
-        print($sql);
-        return 1;
+        $sql = "UPDATE items SET items.description = '".$itemDescription."', items.name = '".$itemName."' where items.itemid = ".$itemId.";";
+
         $db->query($sql);
         return redirect('users/'.$userid);
     }
